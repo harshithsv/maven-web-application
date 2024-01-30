@@ -1,5 +1,8 @@
 node{
-    def mavenHome = tool name:"maven 3.8.4"
+
+properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])
+    
+def mavenHome = tool name:"maven 3.8.4"
     stage('CheckoutCode'){
      git branch: 'development', credentialsId: 'c1bfbbf3-5f5c-4f77-a7e1-e650be7e084e', url: 'https://github.com/harshithsv/maven-web-application.git'   
     }
